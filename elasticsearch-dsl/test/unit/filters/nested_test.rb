@@ -18,10 +18,12 @@ module Elasticsearch
 
             subject.path 'bar'
             subject.filter 'bar'
+            subject.inner_hits({ size: 1 })
 
-            assert_equal %w[ filter path ],
+            assert_equal %w[ filter inner_hits path ],
                          subject.to_hash[:nested].keys.map(&:to_s).sort
             assert_equal 'bar', subject.to_hash[:nested][:path]
+            assert_equal({ size: 1 }, subject.to_hash[:nested][:inner_hits])
           end
 
           should "take a block" do

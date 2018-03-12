@@ -28,6 +28,7 @@ module Elasticsearch
           include BaseComponent
 
           option_method :path
+          option_method :inner_hits
 
           # DSL method for building the `filter` part of the query definition
           #
